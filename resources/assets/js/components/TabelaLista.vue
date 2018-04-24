@@ -42,7 +42,7 @@
 </template>
 <script>
     export default {
-        props:['titulos','itens','detalhe','create','edit','remove','token'],
+        props:['titulos','itens','ordem','ordemcol','detalhe','create','edit','remove','token'],
         data: function(){
         	return{
         		buscar:''
@@ -55,6 +55,28 @@
         },
         computed:{
         	lista: function(){
+
+                let ordem = this.ordem ||"asc";
+                let ordemCol = this.ordemcol || 0;
+
+                ordem = ordem.toLowerCase();
+                ordemCol = parseInt(ordemCol);
+
+                if(ordem == "asc"){
+                    this.itens.sort(function(a, b){
+                        if(a[ordemCol] > b[ordemCol]){return 1;}
+                        if(a[ordemCol] < b[ordemCol]){return -1;}
+                        return 0;
+                    }); 
+
+                }else{
+                    this.itens.sort(function(a, b){
+                        if(a[ordemCol] < b[ordemCol]){return 1;}
+                        if(a[v] > b[ordemCol]){return -1;}
+                        return 0;
+                    }); 
+                }
+
 
         		return this.itens.filter(res=>{
 					for (let k = 0; k < res.length; k++ ) {

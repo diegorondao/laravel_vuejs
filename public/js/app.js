@@ -44029,33 +44029,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['titulos', 'itens', 'detalhe', 'create', 'edit', 'remove', 'token'],
-  data: function data() {
-    return {
-      buscar: ''
-    };
-  },
-  methods: {
-    executaForm: function executaForm(index) {
-      document.getElementById(index).submit();
-    }
-  },
-  computed: {
-    lista: function lista() {
-      var _this = this;
-
-      return this.itens.filter(function (res) {
-        for (var k = 0; k < res.length; k++) {
-          if ((res[k] + "").toLowerCase().indexOf(_this.buscar.toLowerCase()) >= 0) {
-            return true;
-          }
+    props: ['titulos', 'itens', 'ordem', 'ordemcol', 'detalhe', 'create', 'edit', 'remove', 'token'],
+    data: function data() {
+        return {
+            buscar: ''
+        };
+    },
+    methods: {
+        executaForm: function executaForm(index) {
+            document.getElementById(index).submit();
         }
-        return false;
-      });
+    },
+    computed: {
+        lista: function lista() {
+            var _this = this;
 
-      return this.itens;
+            var ordem = this.ordem || "asc";
+            var ordemCol = this.ordemcol || 0;
+
+            ordem = ordem.toLowerCase();
+            ordemCol = parseInt(ordemCol);
+
+            if (ordem == "asc") {
+                this.itens.sort(function (a, b) {
+                    if (a[ordemCol] > b[ordemCol]) {
+                        return 1;
+                    }
+                    if (a[ordemCol] < b[ordemCol]) {
+                        return -1;
+                    }
+                    return 0;
+                });
+            } else {
+                this.itens.sort(function (a, b) {
+                    if (a[ordemCol] < b[ordemCol]) {
+                        return 1;
+                    }
+                    if (a[v] > b[ordemCol]) {
+                        return -1;
+                    }
+                    return 0;
+                });
+            }
+
+            return this.itens.filter(function (res) {
+                for (var k = 0; k < res.length; k++) {
+                    if ((res[k] + "").toLowerCase().indexOf(_this.buscar.toLowerCase()) >= 0) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+
+            return this.itens;
+        }
     }
-  }
 });
 
 /***/ }),

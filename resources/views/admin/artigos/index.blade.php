@@ -8,6 +8,8 @@
                 <tabela-lista
                     v-bind:titulos="['#','Título','Descrição']"
                     v-bind:itens="[['1','PHP', 'OO'], ['2','VueJS', 'TDD']]"
+                    ordem = "asc"
+                    ordemcol = "1"
                     detalhe = "#detalhe"
                     create = "#create"
                     edit = "#edit"
