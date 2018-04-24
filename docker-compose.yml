@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+
+  app:
+    image: ambientum/php:7.1-apache
+    container_name: app
+    volumes:
+      - .:/var/www/app/
+    ports:
+      - "8080:8080"
+    links:
+      - bd
+      - dev
+
+  bd:
+    image: ambientum/mysql:5.7
+    container_name: bd
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=database
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+  dev:
+    image: ambientum/node:9
+    container_name: dev
+    command: npm run dev
+    volumes:
+      - .:/var/www/app
+    ports:
+      - 3000:8080
