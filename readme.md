@@ -1,4 +1,4 @@
-# Provedor de Notícias desenvolvido com Laravel e Vue.js
+# Projeto desenvolvido com Laravel v.5.5 e Vue.js
 
 
 ## Sobre
