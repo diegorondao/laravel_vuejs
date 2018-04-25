@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <painel titulo = "Dashboard" >
+                <caminho v-bind:lista="{{$listaCaminhos}}"></caminho>
                 <div class="row">
                     <div class="col-md-4">
                         <caixa quantidade="80" titulo="Artigos" url="{{ route('artigos.index') }}" cor="orange" icone="fa fa-pie-chart"> </caixa>
