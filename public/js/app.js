@@ -43415,12 +43415,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card card-default" }, [
-    _c("div", { staticClass: "card-header" }, [
-      _vm._v(_vm._s(_vm.titulo) + " ")
-    ]),
+  return _c("div", { staticClass: "panel panel-default" }, [
+    _c("div", { staticClass: "panel-heading" }, [_vm._v(_vm._s(_vm.titulo))]),
     _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [_vm._t("default")], 2)
+    _c("div", { staticClass: "panel-body" }, [_vm._t("default")], 2)
   ])
 }
 var staticRenderFns = []
@@ -44032,20 +44030,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['titulos', 'itens', 'ordem', 'ordemcol', 'detalhe', 'create', 'edit', 'remove', 'token'],
     data: function data() {
         return {
-            buscar: ''
+            buscar: '',
+            ordemAuxiliar: this.ordem || "asc",
+            ordemAuxiliarCol: this.ordemcol || 0
         };
     },
     methods: {
         executaForm: function executaForm(index) {
             document.getElementById(index).submit();
+        },
+        ordenaColuna: function ordenaColuna(coluna) {
+            this.ordemAuxiliarCol = coluna;
+            if (this.ordemAuxiliar.toLowerCase() == "asc") {
+                this.ordemAuxiliar = 'desc';
+            } else {
+                this.ordemAuxiliar = 'asc';
+            }
         }
     },
     computed: {
         lista: function lista() {
             var _this = this;
 
-            var ordem = this.ordem || "asc";
-            var ordemCol = this.ordemcol || 0;
+            var ordem = this.ordemAuxiliar;
+            var ordemCol = this.ordemAuxiliarCol;
 
             ordem = ordem.toLowerCase();
             ordemCol = parseInt(ordemCol);
@@ -44130,8 +44138,19 @@ var render = function() {
         _c(
           "tr",
           [
-            _vm._l(_vm.titulos, function(titulo) {
-              return _c("th", [_vm._v(_vm._s(titulo))])
+            _vm._l(_vm.titulos, function(titulo, index) {
+              return _c(
+                "th",
+                {
+                  staticStyle: { cursor: "pointer" },
+                  on: {
+                    click: function($event) {
+                      _vm.ordenaColuna(index)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(titulo))]
+              )
             }),
             _vm._v(" "),
             _vm.detalhe || _vm.edit || _vm.remove
