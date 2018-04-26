@@ -3,7 +3,7 @@
 		<div class="modal-dialog modal-lg" role="document">
 		    <div class="modal-content">
 		     <slot>
-		     	CONTEUDO DO MODAL AQUI 
+		     	
 		     </slot>
 		    </div>
 	  	</div>
