@@ -22,8 +22,10 @@ class ArtigosController extends Controller
         $listaArtigos = json_encode([
             ["id"=>1, "titulo"=>"PHP OO","descricao"=>"Curso de PHP OO"],
             ["id"=>2, "titulo"=>"JS","descricao"=>"Curso de Vuejs"],
+            ["id"=>3, "titulo"=>"CSS","descricao"=>"Curso de Css"],
             
         ]);
+
 
         return view('admin.artigos.index', compact('listaCaminhos', 'listaArtigos'));
     }
